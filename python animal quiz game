@@ -1,0 +1,69 @@
+#IMPORTING RANDOM FOR RANDOM QUESTIONS
+import random
+
+#INITIALLY SET SCORE TO ZERO.
+Score=0
+
+#INTRODUCING GAME
+print(8*'-',"Welcome to the  ",chr(937),"ANIMAL QUIZ",chr(937)," Game.",8*'-')
+print(5*' ','The Rules are Simple.\n',
+      8*' ',' 1. There will be a variety of questions based on game mode you select, where each question is worth 3 points.\n',
+      8*' ',' 2. Each question contains 3 attempts.One point will be deducted per attempt used until you have reached the maximum of 3 attempts.\n')
+
+#MODES OF GAME AS NO. OF QUESTIONS
+print('\n'+5*' '+" MODE - 1 = EASY   ( 3 QUESTIONS )")
+print(5*' '+" MODE - 2 = NORMAL ( 5 QUESTIONS )")
+print(5*' '+" MODE - 3 = HARD   (10 QUESTIONS )")
+Mode=int(input("ENTER MODE - "))
+Required_Mode= 3 if Mode==1 else 5 if Mode==2 else 10
+print(Required_Mode)
+User_Name=input("ENTER Player_Name  - ")
+
+#STARTING GAME
+enter=input(5*' '+"press ENTER to START the game,"+User_Name.capitalize())
+
+Original_Ques=[': Which is the fastest animal on land ?  -',
+           ': Which animal lives in north pole and has more fur ?  -',
+           ': Which is the largest in size animal on earth ?  -',
+           ': Which is the slowest animal ?  -',
+           ': Which animal/bird is a universal symbol for peace ?  -',
+           ': Which animal does have more life span ?  -',
+           ': Which animal has a large bag to the stomach ?  -',
+           ': Which animal is called king of jungle ?  -',
+           ': Which animal eats mostly bamboo,lazy and is in black and white color ?  -',
+           ": Which animal's eyes are bigger than its brain and runs faster than humans ?  -"]
+
+Answers=['cheetah','polarbear','bluewhale','sloth','dove','tortoise','kangaroo','lion','panda','ostrich']
+#SHUFFLING QUESTIONS
+Shuffled_Ques=Original_Ques[::]
+random.shuffle(Shuffled_Ques)
+
+#USING FOR LOOP FOR ACCESSING N QUESTIONS
+for Question in Shuffled_Ques[0:Required_Mode]:
+   Guess=0
+   #USING WHILE LOOP AS NO. OF GUESS REQUIRED
+   while Guess<3:
+         Output=input(5*'-'+Question)
+         ans_index=Original_Ques.index(Question)
+         Answer=Answers[ans_index]
+         print(ans_index,Answer)
+         
+         if Output.lower()==Answer or Output.replace(' ','')==Answer:
+            print(5*'-'+' CORRECT ANSWER ')
+            Score+=3
+            Guess=3
+         else:
+            print(5*'-'," INCORRECT ANSWER , TRY AGAIN ",5*'-')
+            Score-=1
+            Guess+=1
+
+#SHOWING POINTS TO ABOVE AND BELOW ZERO POINTS
+if Score>0:
+   print(5*' ',"-CONGRATS ",User_Name.capitalize()," YOU SCORED ",Score,"POINTS.")
+else :
+   print(5*' '," SORRY ",User_Name.capitalize()," YOU SCORED ",Score,"POINTS.")
+   
+#THANKING FOR PLAYING
+print(5*'-'+' THANKS FOR PLAYING '+User_Name.capitalize()+' '+5*'-')
+print(8*'='+' THE END '+8*'=')
+			
